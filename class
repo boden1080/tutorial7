@@ -1,0 +1,130 @@
+//#include <iostream>	//for cout << and cin >>
+//using namespace std;
+//int dice;
+//
+//
+//int main() {
+//
+//	void getDiceFace(); //prototype
+//	getDiceFace();
+//	cout << "\nTHE DICE VALUE IS: " << dice << "\n\n";
+//	system("pause");	//to hold the output screen
+//	return 0;
+//}
+//void getDiceFace()
+//{
+//	cout << "Enter a number between 1 and 6";
+//	cin >> dice;
+//	while ((dice < 1 || dice > 6)) //while loop, or
+//	{
+//		cout << "INVALID VALUE, TRY AGAIN";
+//		cin >> dice;
+//	}
+//	
+//
+//	
+//}
+
+//#include <iostream>	//for cout << and cin >>
+//using namespace std;
+//int dice;
+//int main() {
+//	srand(1234);
+//
+//	int i = 0;
+//	while (i < 30)
+//	{
+//		rand() % 6 ; // (0, RAND_MAX)
+//			++i;
+//	}
+//}
+//#include <iostream>	//for cin >> and cout <<
+//using namespace std;
+//int	number, x, y;			//what is x?
+//int main() { 			//processSeriesOfNumbers
+//	void checkNumber();	//prototype
+//	cout << "\nEnter a number: ";
+//	cin >> number;
+//	x = 0;				//what is x?
+//	y = x;
+//	while (number >= 0) {
+//		cout << "Enter a number: ";
+//		cin >> number;
+//		checkNumber();	//call
+//	
+//
+//	}
+//	cout << "x is " << x << "\n\n ";
+//	cout << "y is " << y << "\n\n ";
+//	system("pause");	//to hold the output screen
+//	return 0;
+//}
+//void checkNumber() {	//What does this do?
+//	if (number > x)
+//		x = number;
+//	if (number < y)
+//		y = number;
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//int lineSize;
+//int main()	//drawALine
+//{
+//	void getValidSize();
+//	
+//	int lc = 0;
+//	cout << "Enter size of line";
+//	cin >> lineSize;
+//	getValidSize();
+//		
+//	
+//	while (lc < lineSize)
+//	{
+//		cout << '*';
+//		++lc;
+//	}
+//	cout << "\n\n";
+//	system("pause");	//to hold the output screen
+//	return 0;
+//}
+//
+//void getValidSize()
+//{
+//	while (lineSize <= 0) {
+//		cout << "Enter another value";
+//		cin >> lineSize;
+//	}
+//}
+#include <iostream>
+using namespace std;
+int  shapeSize;
+int main()	//produceASquareShape
+{
+	int i = 0;
+	void drawALine();	//prototype
+	
+	cout << "enter a number";
+	cin >> shapeSize;
+	
+	while (i < shapeSize) {
+		drawALine();
+		cout << endl;
+		++i;
+	}
+	
+	cout << "\n\n";
+	system("pause");	//to hold the output screen
+	return 0;
+}
+void drawALine() {
+	int lc = 0;
+	while (lc < shapeSize)
+	{
+		cout << '*';
+		
+			
+		++lc;
+	}
+}
