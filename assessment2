@@ -1,0 +1,134 @@
+#include <iostream> //For Cout and Cin
+#include <iomanip>
+using namespace std;
+double  fullPriceGoods, discountedGoods, conversationRate; //Global Variables
+bool validCode;
+const double deliveryCharge = 6.50;
+int main()
+{
+	double  toPay;
+	const char POUND = 156;
+	 
+
+	void validityCheck();//prototype functions
+	void calculateTotalDiscountedGoods();
+	void checkValidVoucherCode();
+	void produceOrderCostInOtherCurrency();
+
+	validityCheck();//checking valid value inputted
+	checkValidVoucherCode();
+	calculateTotalDiscountedGoods();
+	
+	cout << fixed << setprecision(2) <<setfill('0')<<  "Order value without discount: " << POUND << fullPriceGoods << '\n';
+	cout << setprecision(2) << setfill('0')<< "Order value with discount: " << POUND << discountedGoods << '\n';
+	
+	if (validCode == true)// If statement as to whether the Voucher code is correct
+	{
+		cout << "Valid Voucher - Free Delivery" << "\n";
+		cout << "Delivery Charge: " << POUND << setprecision(2) << setfill('0') << "0.00" << '\n';
+		toPay = (discountedGoods);
+		cout << "To pay: " << POUND << setprecision(2) << setfill('0') << toPay << "\n";
+		cout << endl;
+	}
+	else
+	{
+		cout << "Invalid Voucher Code Used" << "\n";
+		cout << "Delivery Charge: " << POUND << setprecision(2) << setfill('0') << deliveryCharge << '\n';
+		toPay = (discountedGoods + deliveryCharge);
+		cout << "To pay: " << POUND << setprecision(2) << setfill('0') << toPay << "\n";
+		cout << endl;
+	}
+	
+	produceOrderCostInOtherCurrency();
+	if (conversationRate > 0)
+		cout << (conversationRate * toPay);
+	else
+		cout << endl;
+	cout << endl;
+	
+
+
+
+	system("pause");	//to hold the output screen
+	return 0;
+
+	
+}
+void validityCheck()
+{
+	//making sure the the user enters a positive number
+	cout << "Enter the cost of the goods: ";
+	cin >> fullPriceGoods;
+	while (fullPriceGoods <= 0)
+	{
+		cout << "ERROR: The order value should be a positive number!";
+		cout << endl;
+		cout << "Enter the cost of the goods: ";
+		cin >> fullPriceGoods;
+	}
+}
+void calculateTotalDiscountedGoods()
+{
+	//discount rate conditions
+	if (fullPriceGoods <= 30)
+		discountedGoods = (fullPriceGoods * 0.80);
+	if (fullPriceGoods <= 60)
+		discountedGoods = (fullPriceGoods * 0.70);
+	if (fullPriceGoods > 60)
+		discountedGoods = (fullPriceGoods * 0.50);
+}
+void checkValidVoucherCode()
+{
+	int voucherCode, digits = 0, temp, num, sum = 0; //temp value
+	cout << "Enter Voucher Code:  #";
+	cin >> voucherCode;
+	//calculating digits
+	temp = voucherCode;
+	while (temp > 0)
+	{
+		temp = temp / 10;
+		digits++;
+	}
+	//calculating sum
+	num = voucherCode;
+	while (num != 0)
+	{
+		sum = sum + num % 10;// using mod fucntion to add up each remainder
+		num = num / 10;//dividing by 10 to get next digit
+	}
+
+	//Validation
+
+	if (sum != 12 || digits != 4 || voucherCode < 0)
+		validCode = 0;
+	else
+		validCode = 1;//setting validCode Boolean Variable to true or false
+	
+}
+void produceOrderCostInOtherCurrency()
+{
+	char currencySymbol;
+	cout << "Currency ('E' for euros, '$' for dollars or '#' for N/A):";
+	cin >> currencySymbol;
+
+	switch (currencySymbol)
+	{
+		conversationRate = 0;
+		case '$':
+			cout << "Cost in US Dollars :" << "$" ;
+			conversationRate = 1.22;
+		break;
+		case 'E':
+		case 'e'://added incase they use lower case
+			cout << "Cost in Euros:";
+			conversationRate = 1.1;
+		break;
+		case '#':
+			cout << "\n";
+		break;
+		default:
+			cout << "ERROR: Currency unknown!";
+		break;
+	}
+
+}
